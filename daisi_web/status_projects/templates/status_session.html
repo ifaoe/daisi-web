@@ -1,0 +1,16 @@
+{% extends "status.html" %}
+
+{% block session %}
+    <ul class="accordion" data-accordion role="tablist" data-multi-expand="true" data-allow-all-closed="true">
+    {% for session, projects in sessions.items %}
+    <li class="accordion-item" type="item">
+        <a href="#panel-session-{{session}}" type="session" data="{{session}}" role="tab" class="accordion-title" id="panel-session-{{session}}-heading" aria-controls="panel-session-{{session}}">
+            {{session}}
+        </a>
+        <div id="panel-session-{{session}}" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel-session-{{session}}-heading">
+            {% block project %}{% endblock %}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

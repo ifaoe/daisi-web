@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="small-3 columns">
+    <ul class="vertical menu" data-accordion-menu>
+    {% for owpas, years in view.project_list.items %}
+    <li>
+        <a>{{owpas}}</a>
+        <ul class="menu vertical nested">
+            {% for year, sessions in years.items %}
+            <li>
+                <a>{{year}}</a>
+                <ul class="menu vertical nested">
+                    {% for session, projects in sessions.items %}
+                    <li>
+                        <a>{{session}}</a>
+                        <ul class="menu vertical nested">
+                            {% for project in projects %}
+                            <li>
+                                <a type="project" data="{{project}}" url="{% url "project_progress" project %}">{{project}}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+    </ul>
+</div>
+<div id="wrapper" style="width:100%; text-align:center">
+    <img id="busy" src="{% static "img/busy.gif" %}">
+</div>
+<div id="content" class="small-9 columns">
+
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script>
+        $(document).ready( function() {
+        $('#busy').fadeOut();
+        $('[type="project"]').click(function() {
+            $('#content').hide();
+            $('#busy').fadeIn();
+            url = $(this).attr('url');
+            $('#content').load(url, function() {
+                $('#busy').hide();
+                $('#content').fadeIn();
+            });
+        });
+    });
+</script>
+{% endblock javascript %}

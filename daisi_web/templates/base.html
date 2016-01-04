@@ -1,0 +1,52 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html class="no-js" lang="en">
+{% block style %}
+{% endblock style %}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daisi Webinterface</title>
+    <link rel="stylesheet" href="{% static "foundation6/css/foundation.css" %}" />
+    <link rel="stylesheet" href="{% static "foundation6/css/app.css" %}" />
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu data-click-open="false">
+                <li class="menu-text">Status</li>
+                <li><a href="{% url "index" %}">Index</a></li>
+                <li><a href="{% url "status" %}">Status</a></li>
+                <li>
+                    <a href="export/exports.html">Datenbankabfragen</a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <li><a href="export/bsh-export.html">BSH-Export</a></li>
+                        <li><a href="export/daisi-export.html">DAISI-Export</a></li>
+                        <li><a href="export/qa-export.html">QA-Exports</a></li>
+                    </ul>
+                </li>
+                <li><a href="option/options.html">Optionen</a></li>
+            </ul>
+        </div>
+    </div>
+    <section class="main-section">
+        <div class="row collapse">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </section>
+    <script src="{% static "foundation6/js/vendor/jquery.min.js" %}"></script>
+    <script src="{% static "foundation6/js/foundation.min.js" %}"></script>
+    <script src="{% static "foundation6/js/app.js" %}"></script>
+    <script>
+        $(document).foundation();
+    </script>
+    {% block javascript %}
+    {% endblock javascript %}
+</body>
+
+</html>

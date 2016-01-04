@@ -1,0 +1,63 @@
+<h3>Projekt {{session}}</h3>
+<div class="callout">
+    <h4>Fortschritt</h4>
+    {% if watched_p == 100 %}
+    <div class="callout success">
+    {% else %}
+    <div class="callout">
+    {% endif %}
+        <h6>Vorsortierung</h6>
+        <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{watched_p}}" aria-valuemin="0" aria-valuetext="{{watched_p}} percent" aria-valuemax="100">
+            <span class="progress-meter" style="width: {{watched_p}}%">
+                <p class="progress-meter-text">{{watched_p}}% ({{watched}}/{{pre_clean}})</p>
+            </span>
+        </div>
+    </div>
+
+    {% if pre_p == 100 %}
+    <div class="callout success">
+    {% else %}
+    <div class="callout">
+    {% endif %}
+        <h6>Erstbestimmung</h6>
+        <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{pre_p}}" aria-valuemin="0" aria-valuetext="{{pre_p}} percent" aria-valuemax="100">
+            <span class="progress-meter" style="width: {{pre_p}}%">
+                <p class="progress-meter-text">{{pre_p}}% ({{pre}}/{{count}})</p>
+            </span>
+        </div>
+    </div>
+    {% if final_p == 100 %}
+    <div class="callout success">
+    {% else %}
+    <div class="callout">
+    {% endif %}
+        <h6>Endbestimmung</h6>
+        <div class="progress" role="progressbar" tabindex="0" aria-valuenow="{{final_p}}" aria-valuemin="0" aria-valuetext="{{final_p}} percent" aria-valuemax="100">
+            <span class="progress-meter" style="width: {{final_p}}%">
+                <p class="progress-meter-text">{{final_p}}% ({{final}}/{{count}})</p>
+            </span>
+        </div>
+    </div>
+    {% if conflict > 1 %}
+    <div class="callout warning">
+        <h6>Konflikte</h6>
+        Noch {{conflict}} Konflikte zu bearbeiten.
+    </div>
+    {% elif conflict == 1 %}
+    <div class="callout warning">
+        <h6>Konflikte</h6>
+        Noch ein Konflikt zu bearbeiten.
+    </div>
+    {% else %}
+    <div class="callout success">
+        <h6>Konflikte</h6>
+        Keine Konflikte zu bearbeiten.
+    </div>
+    {% endif %}
+</div>
+{% if watched_p == 100 and final_p == 100  %}
+<div class="callout">
+    <h4>Exporte</h4>
+
+</div>
+{% endif %}
