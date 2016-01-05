@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="callout">
+    Projektauswahl
+    <input id='filter_input' auto="projects" type="text" placeholder="Projekt">
+</div>
+<div class="callout">
+    Datenexport
+    <div class="button-group">
+      <a class="button">BSH-Export</a>
+      <a class="button">RohdatenExport</a>
+    </div>
+</div>
+<div class="callout">
+    Qualitätssicherung
+    <div class="button-group">
+      <a class="button">Falsche Bildnummer</a>
+      <a class="button">Doppelmarkierungen</a>
+      <a class="button">Doppelmarkierungen (ANTHRO)</a>
+    </div>
+</div>
+<div id="export-callout" class="callout">
+    Export
+    <div id="export-content">
+
+    </div>
+</div>
+<script>
+    $('#export-callout').hide();
+</script>
+{% endblock content %}
+
+{% block javascript %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="{% static "js/autocomplete.js" %}"></script>
+<script>
+ProjectComplete();
+</script>
+{% endblock javascript %}

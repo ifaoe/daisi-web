@@ -1,7 +1,7 @@
 <h3>Projekt {{session}}</h3>
 <div class="callout">
     <h4>Fortschritt</h4>
-    {% if watched_p == 100 %}
+    {% if watched == pre_clean %}
     <div class="callout success">
     {% else %}
     <div class="callout">
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    {% if pre_p == 100 %}
+    {% if pre == count %}
     <div class="callout success">
     {% else %}
     <div class="callout">
@@ -26,7 +26,7 @@
             </span>
         </div>
     </div>
-    {% if final_p == 100 %}
+    {% if final == count %}
     <div class="callout success">
     {% else %}
     <div class="callout">
@@ -55,9 +55,3 @@
     </div>
     {% endif %}
 </div>
-{% if watched_p == 100 and final_p == 100  %}
-<div class="callout">
-    <h4>Exporte</h4>
-
-</div>
-{% endif %}

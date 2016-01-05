@@ -21,14 +21,7 @@
                 <li class="menu-text">Status</li>
                 <li><a href="{% url "index" %}">Index</a></li>
                 <li><a href="{% url "status" %}">Status</a></li>
-                <li>
-                    <a href="export/exports.html">Datenbankabfragen</a>
-                    <ul class="submenu menu vertical" data-submenu>
-                        <li><a href="export/bsh-export.html">BSH-Export</a></li>
-                        <li><a href="export/daisi-export.html">DAISI-Export</a></li>
-                        <li><a href="export/qa-export.html">QA-Exports</a></li>
-                    </ul>
-                </li>
+                <li><a href="{% url "exports" %}">Datenbankabfragen</a></li>
                 <li><a href="option/options.html">Optionen</a></li>
             </ul>
         </div>

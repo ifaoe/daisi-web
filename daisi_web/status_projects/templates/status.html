@@ -12,16 +12,10 @@
             <li>
                 <a>{{year}}</a>
                 <ul class="menu vertical nested">
-                    {% for session, projects in sessions.items %}
+                    {% for session in sessions %}
                     <li>
-                        <a>{{session}}</a>
-                        <ul class="menu vertical nested">
-                            {% for project in projects %}
-                            <li>
-                                <a type="project" data="{{project}}" url="{% url "project_progress" project %}">{{project}}</a>
-                            </li>
-                            {% endfor %}
-                        </ul>
+                        <a type="session"  url="{% url "session_progress" session %}">{{session}}</a>
+
                     </li>
                     {% endfor %}
                 </ul>
@@ -32,9 +26,7 @@
     {% endfor %}
     </ul>
 </div>
-<div id="wrapper" style="width:100%; text-align:center">
-    <img id="busy" src="{% static "img/busy.gif" %}">
-</div>
+
 <div id="content" class="small-9 columns">
 
 </div>
@@ -43,15 +35,9 @@
 {% block javascript %}
 <script>
         $(document).ready( function() {
-        $('#busy').fadeOut();
-        $('[type="project"]').click(function() {
-            $('#content').hide();
-            $('#busy').fadeIn();
+        $('[type="session"]').click(function() {
             url = $(this).attr('url');
-            $('#content').load(url, function() {
-                $('#busy').hide();
-                $('#content').fadeIn();
-            });
+            $('#content').load(url);
         });
     });
 </script>

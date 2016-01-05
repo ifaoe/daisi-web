@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from daisi_web.status_projects.views import ProjectData, ProjectProgress
+from daisi_web.status_projects.views import ProjectData, SessionProgress, ProjectProgress
+from daisi_web.exports import views as ExportViews
 from daisi_web.plain.views import IndexView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', IndexView.as_view(), name='index'),
     url(r'^status/$', ProjectData.as_view(), name='status'),
-    url(r'^status/(?P<project>[0-9]{4}-[0-9]{2}-[0-9]{2}-.+)/$', ProjectProgress, name='project_progress')
+    url(r'^status/sessions/(?P<session>[0-9]{4}-[0-9]{2}-[0-9]{2}-.+)/$', SessionProgress, name='session_progress'),
+    url(r'^status/projects/(?P<project>[0-9]{4}-[0-9]{2}-[0-9]{2}-.+)/$', ProjectProgress, name='project_progress'),
+    url(r'^export/$', ExportViews.ExportView.as_view(), name='exports'),
+    url(r'^api/get_sessions/', ExportViews.get_sessions, name='get_projects'),
 ]

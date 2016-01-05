@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'daisi_web.status_projects',
-    'daisi_web.plain'
+    'daisi_web.plain',
+    'daisi_web.exports'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,16 +1,25 @@
-{% extends "status.html" %}
+{% load staticfiles %}
 
 {% block session %}
-    <ul class="accordion" data-accordion role="tablist" data-multi-expand="true" data-allow-all-closed="true">
-    {% for session, projects in sessions.items %}
-    <li class="accordion-item" type="item">
-        <a href="#panel-session-{{session}}" type="session" data="{{session}}" role="tab" class="accordion-title" id="panel-session-{{session}}-heading" aria-controls="panel-session-{{session}}">
-            {{session}}
-        </a>
-        <div id="panel-session-{{session}}" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="panel-session-{{session}}-heading">
-            {% block project %}{% endblock %}
+<div class="row">
+    {% for project in projects %}
+    <div class="small-6 columns">
+        <div id="wrapper" style="width:100%; text-align:center">
+            <img id="busy-{{project}}" src="{% static "img/busy.gif" %}">
         </div>
-    </li>
+        <div id="{{project}}"></div>
+        <script>
+            $(document).ready(function(){
+            $('#exports').hide();
+                url = "{% url "project_progress" project %}";
+                $('#{{project}}').load(url, function(){
+                    $('#busy-{{project}}').hide();
+                });
+                $('#exports').show();
+            });
+        </script>
+    </div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}
+
