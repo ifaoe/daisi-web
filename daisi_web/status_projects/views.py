@@ -25,7 +25,7 @@ class ProjectData(TemplateView):
         return project_dictionary
 
 
-def SessionProgress(request, session):
+def session_progress(request, session):
     template_name = "status_session.html"
     cursor = connections['jalapeno'].cursor()
     cursor.execute("SELECT project FROM daisi_web.web_view_project_list WHERE session=%s AND project NOT LIKE %s", (session,'Test%',))
@@ -35,7 +35,7 @@ def SessionProgress(request, session):
     return render_to_response(template_name, {'projects': projects})
 
 
-def ProjectProgress(request, project):
+def project_progress(request, project):
     template_name = "status_project.html"
     cursor = connections['jalapeno'].cursor()
     cursor.execute("SELECT * FROM daisi_web.census_status WHERE session=%s", (project,))

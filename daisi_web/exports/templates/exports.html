@@ -2,34 +2,30 @@
 {% load staticfiles %}
 
 {% block content %}
-<div class="callout">
-    Projektauswahl
-    <input id='filter_input' auto="projects" type="text" placeholder="Projekt">
-</div>
-<div class="callout">
-    Datenexport
-    <div class="button-group">
-      <a class="button">BSH-Export</a>
-      <a class="button">RohdatenExport</a>
+<h3>Exporte</h3>
+<form id="export-form" action="{% url "exports" %}" method="post">
+    {% csrf_token %}
+    <h4>Projektauswahl</h4>
+    {{form.export_session}}
+    <div class="row">
+        <div class="small-6 column">
+            <h4>Exporttyp</h4>
+            {{form.export_type}}
+        </div>
+        <div class="small-6 column">
+            <h4>Exportformat</h4>
+            {{form.export_format}}
+        </div>
     </div>
-</div>
-<div class="callout">
-    Qualitätssicherung
-    <div class="button-group">
-      <a class="button">Falsche Bildnummer</a>
-      <a class="button">Doppelmarkierungen</a>
-      <a class="button">Doppelmarkierungen (ANTHRO)</a>
-    </div>
-</div>
-<div id="export-callout" class="callout">
-    Export
-    <div id="export-content">
+    <button class="button" type="submit">Exportieren</button>
+    <script>
 
-    </div>
+    </script>
+</form>
+
+<div id="result">
+
 </div>
-<script>
-    $('#export-callout').hide();
-</script>
 {% endblock content %}
 
 {% block javascript %}

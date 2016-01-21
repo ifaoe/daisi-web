@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+    <h3>Der Export läuft</h3>
+    <div class="row">
+
+    </div>
+    <div class="row">
+        Die Datei sollte in wenigen Augenblicken heruntergeladen werden.
+    </div>
+    <div class="row">
+        Sollte nichts passieren bitte <a href="{% url "export_data" session export filetype %}">hier</a> klicken.
+        <hr>
+        <a href="{% url "exports" %}" class="button">Zurück</a>
+    </div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script>
+    $(document).ready( function(){
+        url = "{% url "export_data" session export filetype %}";
+        window.location.assign(url, function(){
+            alert("done!");
+        });
+    });
+</script>
+{% endblock javascript %}

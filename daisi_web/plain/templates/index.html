@@ -3,7 +3,12 @@
 {% block content %}
 <br> Dies ist die Hauptseite des DAISI-Webinterfaces.
 <br>
-
+{% if not user.is_authenticated %}
+    <div class="callout alert">
+        Die meisten Funktionen benötigen einen Login Zugang.
+        Bitte registieren.
+    </div>
+{% endif %}
 <p>
     <b>Abschnitte:</b>
     <ol>

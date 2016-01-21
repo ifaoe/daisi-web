@@ -1,6 +1,7 @@
 {% load staticfiles %}
+{% load i18n %}
 
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="en">
 {% block style %}
 {% endblock style %}
@@ -9,34 +10,66 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daisi Webinterface</title>
-    <link rel="stylesheet" href="{% static "foundation6/css/foundation.css" %}" />
-    <link rel="stylesheet" href="{% static "foundation6/css/app.css" %}" />
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="{% static "foundation-6/css/foundation.css" %}" />
+    <link rel="stylesheet" href="{% static "foundation-6/css/app.css" %}" />
 </head>
 
 <body>
     <div class="top-bar">
         <div class="top-bar-left">
             <ul class="dropdown menu" data-dropdown-menu data-click-open="false">
-                <li class="menu-text">Status</li>
+                <li href="{% url "index" %}" class="menu-text">DAISI-Web</li>
                 <li><a href="{% url "index" %}">Index</a></li>
+                {% if perms.auth.daisi_staff %}
                 <li><a href="{% url "status" %}">Status</a></li>
                 <li><a href="{% url "exports" %}">Datenbankabfragen</a></li>
                 <li><a href="option/options.html">Optionen</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="top-bar-right ">
+            <ul class="menu">
+                {% if user.is_authenticated %}
+                <li>
+                    <button data-toggle="logout-dropdown" type="button" class="small button">{% trans "Sign Out" %}</button>
+                </li>
+                {% else %}
+                <li>
+                    <button data-toggle="login-dropdown"   type="button" class="small button">{% trans "Sign In" %}</button>
+                </li>
+                <li>
+                    <button id="register-button"  class="small button">{% trans "Sign Up" %}</button>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
+    {% if user.is_authenticated %}
+    <div class="dropdown-pane bottom" id="logout-dropdown" data-dropdown data-auto-focus="true">
+    </div>
+    {% else %}
+    <div class="dropdown-pane bottom" id="login-dropdown" data-dropdown data-auto-focus="true">
+    </div>
+    {% endif %}
+
     <section class="main-section">
         <div class="row collapse">
             {% block content %}
             {% endblock content %}
         </div>
     </section>
-    <script src="{% static "foundation6/js/vendor/jquery.min.js" %}"></script>
-    <script src="{% static "foundation6/js/foundation.min.js" %}"></script>
-    <script src="{% static "foundation6/js/app.js" %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{% static "foundation-6/js/foundation.min.js" %}"></script>
+    <script src="{% static "foundation-6/js/app.js" %}"></script>
     <script>
         $(document).foundation();
+        $(document).ready(function(){
+            $('#login-dropdown').load("{% url "account_dropdown_login" %}");
+            $('#logout-dropdown').load("{% url "account_dropdown_logout" %}");
+            $('#register-button').click(function(){
+                window.location.href = "{% url 'account_signup' %}";
+            });
+        });
     </script>
     {% block javascript %}
     {% endblock javascript %}

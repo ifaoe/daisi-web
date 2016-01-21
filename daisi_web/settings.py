@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,39 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'daisi_web.status_projects',
     'daisi_web.plain',
-    'daisi_web.exports'
+    'daisi_web.exports',
+    'daisi_web.accounts',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+)
+
+SITE_ID = 1
+
+# auth and allauth settings
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+# ACCOUNT_USERNAME_MIN_LENGTH = 3
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SIGNUP_FORM_CLASS = 'daisi_web.accounts.forms.SignupForm'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'                                           ''
+
+
+# DEBUG FOR ALLAUTH TODO: REMOVE!
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,15 +110,15 @@ WSGI_APPLICATION = 'daisi_web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASE_ROUTERS = ['daisi_web.routers.DatabaseRouter']
+# DATABASE_ROUTERS = ['daisi_web.routers.DatabaseRouter']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'daisi_web',
-        'USER': 'daisi_web',
-        'PASSWORD': '18ifaoe184',
-        'HOST': '127.0.0.1',
+        'NAME': 'daisi_django',
+        'USER': 'daisi_django',
+        'PASSWORD': '18django184',
+        'HOST': '192.168.118.35',
         'PORT': '5432',
     },
     'jalapeno': {
@@ -106,11 +139,14 @@ DATABASES = {
     }
 }
 
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = '192.168.118.35'
+# EMAIL_PORT = 587
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de-de'
 
 TIME_ZONE = 'UTC'
 
