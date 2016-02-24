@@ -64,8 +64,12 @@ ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'                     
 
 
 # DEBUG FOR ALLAUTH TODO: REMOVE!
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = '192.168.118.35'
+EMAIL_HOST_USER = 'daisi@ifaoe.de'
+EMAIL_HOST_PASSWORD = '18django184'
+EMAIL_PORT = 25
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -138,11 +142,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = '192.168.118.35'
-# EMAIL_PORT = 587
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 

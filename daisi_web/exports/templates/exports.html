@@ -3,7 +3,7 @@
 
 {% block content %}
 <h3>Exporte</h3>
-<form id="export-form" action="{% url "exports" %}" method="post">
+<form id="export-form" action="{% url 'exports' %}" method="post">
     {% csrf_token %}
     <h4>Projektauswahl</h4>
     {{form.export_session}}
@@ -18,9 +18,6 @@
         </div>
     </div>
     <button class="button" type="submit">Exportieren</button>
-    <script>
-
-    </script>
 </form>
 
 <div id="result">
@@ -31,7 +28,7 @@
 {% block javascript %}
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script src="{% static "js/autocomplete.js" %}"></script>
+<script src="{% static 'js/autocomplete.js' %}"></script>
 <script>
 ProjectComplete();
 </script>
