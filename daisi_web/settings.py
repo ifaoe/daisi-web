@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'daisi_web.plain',
     'daisi_web.exports',
     'daisi_web.accounts',
+    'daisi_web.options',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -66,8 +67,8 @@ ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'                     
 # DEBUG FOR ALLAUTH TODO: REMOVE!
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = '127.0.0.1'
-EMAIL_HOST_USER = 'daisi@ifaoe.de'
-EMAIL_HOST_PASSWORD = '18django184'
+#EMAIL_HOST_USER = 'daisi@ifaoe.de'
+#EMAIL_HOST_PASSWORD = '18django184'
 EMAIL_PORT = 25
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 AUTHENTICATION_BACKENDS = (

@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^export/data/(?P<session>[0-9]{4}-[0-9]{2}-[0-9]{2}-.+)/(?P<export>.+)/(?P<filetype>.+)/$',
         process_export, name='export_data'),
     url(r'^api/get_sessions/', export_views.get_sessions, name='get_projects'),
+    url(r'^options/', include('daisi_web.options.urls')),
 ]

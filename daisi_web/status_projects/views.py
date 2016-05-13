@@ -14,13 +14,13 @@ from django.shortcuts import render_to_response
 
 class ProjectData(TemplateView):
     template_name = "status.html"
-
+    
     def project_list(self):
         cursor = connections['jalapeno'].cursor()
         cursor.execute(
             "SELECT DISTINCT owpas, year, session FROM daisi_web.web_view_project_list "
             "ORDER BY owpas, year, session DESC")
-        project_dictionary = {};
+        project_dictionary = {}
         for owpas, year, session in cursor.fetchall():
             project_dictionary.setdefault(owpas, {}).setdefault(year, []).append(session)
         return project_dictionary

@@ -23,7 +23,7 @@
                 {% if perms.auth.daisi_staff %}
                 <li><a href="{% url "status" %}">Status</a></li>
                 <li><a href="{% url "exports" %}">Datenbankabfragen</a></li>
-                <li><a href="option/options.html">Optionen</a></li>
+                <li><a href="{% url "options" %}">Optionen</a></li>
                 {% endif %}
             </ul>
         </div>
