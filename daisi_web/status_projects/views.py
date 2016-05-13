@@ -50,17 +50,17 @@ def project_progress(request, project):
     data = {
         'session': session,
         'count': count,
-        'pre_p': floor(pre / count * 100),
+        'pre_p': floor(pre * 100 / count),
         'pre': pre,
-        'final_p': floor(final / count * 100),
+        'final_p': floor(final * 100 / count),
         'final': final,
-        'conflict_p': floor(conflict / count * 100),
+        'conflict_p': floor(conflict * 100 / count),
         'conflict': conflict,
         'pre_count': pre_count,
         'pre_clean': pre_count - rejected,
         'rejected': rejected,
-        'rejected_p': floor(rejected / pre_count * 100),
+        'rejected_p': floor(rejected * 100 / pre_count),
         'watched': watched,
-        'watched_p': floor(watched / (pre_count - rejected) * 100)
+        'watched_p': floor(watched * 100 / (pre_count - rejected))
     }
     return render_to_response(template_name, data)
