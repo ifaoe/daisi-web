@@ -123,23 +123,15 @@ DATABASES = {
         'NAME': 'daisi_django',
         'USER': 'daisi_django',
         'PASSWORD': '18django184',
-        'HOST': '192.168.118.35',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     },
     'jalapeno': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'daisi',
-        'USER': 'daisi_web',
-        'PASSWORD': '18ifaoe184',
-        'HOST': '192.168.118.35',
-        'PORT': '5432',
-    },
-    'tobasco': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'daisi',
-        'USER': 'daisi_web',
-        'PASSWORD': '18ifaoe184',
-        'HOST': '192.168.200.35',
+        'USER': 'daisi_django',
+        'PASSWORD': '18django184',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }

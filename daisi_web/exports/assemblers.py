@@ -10,6 +10,11 @@ from django.shortcuts import HttpResponse
 
 
 def bsh_export(session):
+    # get ftz version for export
+    cursor = connections['jalapeno'].cursor()
+    cursor.execute("SELECT DISTINCT regexp_replace(version, '[^0-9]+','','g') FROM projects WHERE project_id=%s", (session,))
+    version_entry = cursor.fetchone()[0]
+
     # create output as bytefile in  memory
     output = BytesIO()
 
@@ -20,7 +25,7 @@ def bsh_export(session):
 
     # get the database connection cursor from django
     cursor = connections['jalapeno'].cursor()
-    cursor.execute("SELECT * FROM daisi_web.bsh_trip_view WHERE cruiseno=%s", (session,))
+    cursor.execute('SELECT * FROM daisi_web.bsh_trip_view_ftz' + version_entry + ' WHERE cruiseno=%s', (session,))
 
     # get a list of description tuples containing column names, type, etc.
     description = cursor.description
@@ -39,7 +44,7 @@ def bsh_export(session):
     base_sheet = workbook.add_worksheet('Basisdaten')
 
     cursor = connections['jalapeno'].cursor()
-    cursor.execute("SELECT * FROM daisi_web.bsh_base_view WHERE cruiseno=%s", (session,))
+    cursor.execute('SELECT * FROM daisi_web.bsh_base_view_ftz' + version_entry + ' WHERE cruiseno=%s', (session,))
 
     description = cursor.description
 
@@ -54,7 +59,7 @@ def bsh_export(session):
     observation_sheet = workbook.add_worksheet('Beobachtungsdaten')
 
     cursor = connections['jalapeno'].cursor()
-    cursor.execute("SELECT * FROM daisi_web.bsh_observation_view WHERE cruiseno=%s", (session,))
+    cursor.execute('SELECT * FROM daisi_web.bsh_observation_view_ftz' + version_entry + ' WHERE cruiseno=%s', (session,))
 
     description = cursor.description
 

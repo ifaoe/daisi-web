@@ -15,7 +15,7 @@ def get_sessions(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
         cursor = connections['jalapeno'].cursor()
-        cursor.execute("SELECT DISTINCT session FROM daisi_web.project_list WHERE lower(session) LIKE lower(%s) ORDER BY session DESC",('%'+q+'%',))
+        cursor.execute("SELECT DISTINCT session FROM daisi_web.project_list WHERE lower(session) LIKE lower(%s) ORDER BY session DESC", ('%'+q+'%',))
 
         results = []
         for row in cursor.fetchall():
@@ -78,7 +78,6 @@ class ExportRunning(TemplateView):
 
 def process_export(request, session, export, filetype):
     if filetype == 'xlsx':
-        xlsx_data = None
         if export == 'bsh':
             xlsx_data = bsh_export(session)
         else:
