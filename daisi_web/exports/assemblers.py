@@ -56,7 +56,7 @@ def bsh_export(session):
 
             base_sheet.write(idx+1, idy, entry)
 
-    observation_sheet = workbook.add_worksheet('Beobachtungsdaten')
+    observation_sheet = workbook.add_worksheet('Observations')
 
     cursor = connections['jalapeno'].cursor()
     cursor.execute('SELECT * FROM daisi_web.bsh_observation_view_ftz' + version_entry + ' WHERE cruiseno=%s', (session,))
